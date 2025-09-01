@@ -2,5 +2,3 @@ Flask==2.3.3
 yt-dlp==2023.7.6
 Werkzeug==2.3.7
 pathlib==1.0.1
-SQLite3==2.6.0
-concurrent-futures==3.0.5
