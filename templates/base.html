@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Streaming</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>🎵 MyTunes</h2>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('view_playlists') }}">Playlists</a></li>
+            </ul>
+        </nav>
+        <button class="create-playlist-btn" onclick="showCreatePlaylistModal()">
+            Create Playlist
+        </button>
+    </div>
+
+    <main class="main">
+        <form id="search-form" class="search-form">
+            <input type="text" name="query" placeholder="Search for songs...">
+            <button type="submit">Search</button>
+        </form>
+        <div id="status-container"></div>
+        {% block content %}{% endblock %}
+    </main>
+
+    <div class="player">
+        <div id="player-status">No song playing</div>
+        <audio id="audioPlayer" controls></audio>
+    </div>
+
+    <div class="modal-overlay"></div>
+    <div class="playlist-modal">
+        <h2>Create Playlist</h2>
+        <input type="text" id="playlist-name" placeholder="Playlist name">
+        <div class="modal-buttons">
+            <button onclick="createPlaylist()" class="primary-btn">Create</button>
+            <button onclick="hideCreatePlaylistModal()" class="secondary-btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

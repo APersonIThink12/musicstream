@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="playlist-container">
+    <div class="playlist-header">
+        <h1>{{ playlist_name }}</h1>
+        <div class="playlist-info">
+            <span>{{ songs|length }} songs</span>
+        </div>
+    </div>
+
+    <div class="songs">
+        {% for song in songs %}
+        <div class="song-card">
+            <img src="{{ url_for('static', filename='images/default-cover.png') }}" alt="Album art" class="song-cover">
+            <div class="song-info">
+                <div class="song-title">{{ song }}</div>
+                <button class="play-btn" onclick="playSong('{{ song }}')">▶</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

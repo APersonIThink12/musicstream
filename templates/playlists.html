@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="playlist-container">
+    <div class="section-header">
+        <h1>Your Playlists</h1>
+        <button class="create-playlist-btn" onclick="showCreatePlaylistModal()">Create Playlist</button>
+    </div>
+    <div class="playlists-grid">
+        {% if playlists %}
+            {% for playlist in playlists %}
+            <a href="{{ url_for('view_playlist', playlist_id=playlist[0]) }}" class="playlist-card">
+                <div class="playlist-card-inner">
+                    <img src="{{ url_for('static', filename='images/playlist-default.png') }}" alt="Playlist cover">
+                    <h3>{{ playlist[1] }}</h3>
+                </div>
+            </a>
+            {% endfor %}
+        {% else %}
+            <div class="no-playlists">
+                <p>No playlists yet. Create one to get started!</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

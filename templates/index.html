@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Music Streaming</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="main">
+    <h1>Music Catalog</h1>
+    <form id="search-form" class="search-form">
+      <input type="text" name="query" placeholder="Search for a song..." required>
+      <button type="submit">Search & Add</button>
+    </form>
+    <div id="status-container"></div>
+    {% block content %}
+    <div class="songs">
+      {% for song in songs %}
+      <div class="song-card">
+        <img src="{{ url_for('static', filename='images/default-cover.png') }}" alt="Cover">
+        <div class="song-info">
+            <div class="song-title">{{ song }}</div>
+            <div class="song-controls">
+                <button class="play-btn" onclick="playSong('{{ song }}')">▶</button>
+                <button class="add-to-playlist-btn" onclick="showAddToPlaylistModal('{{ song }}')">+</button>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endblock %}
+  </div>
+  <div class="player">
+    <p id="player-status">Select a song to play</p>
+    <audio id="audioPlayer" controls></audio>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
